@@ -1,0 +1,67 @@
+<!-- frontend/upload-photo.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Upload Foto Profil | SnapLoop</title>
+  <link rel="stylesheet" href="assets/css/login.css" />
+</head>
+<body>
+  <div class="form-container">
+    <!-- Logo -->
+    <img src="assets/images/logo.png" alt="SnapLoop Logo" class="logo" />
+
+    <h2>Upload Profile Photo</h2>
+    <p>Upload your profile photo to complete your SnapLoop account</p>
+
+    <form id="uploadForm" enctype="multipart/form-data">
+      <input type="file" id="profilePhoto" accept="image/*" required />
+      <button type="submit">Next</button>
+    </form>
+
+    <p class="switch-link"><a href="profile.html">Skip it for now</a></p>
+  </div>
+
+  <script>
+    document.getElementById("uploadForm").addEventListener("submit", async function (e) {
+      e.preventDefault();
+
+      const fileInput = document.getElementById("profilePhoto");
+      const file = fileInput.files[0];
+
+      if (!file) {
+        alert("Silakan pilih foto terlebih dahulu.");
+        return;
+      }
+
+      const formData = new FormData();
+      formData.append("photo", file);
+
+      try {
+        const token = localStorage.getItem("token");
+
+        const response = await fetch("http://<EC2-IP>:<PORT>/upload-profile-photo", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${token}`
+          },
+          body: formData
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+          alert("Foto profil berhasil diunggah!");
+          window.location.href = "profile.html";
+        } else {
+          alert(result.message || "Gagal upload foto.");
+        }
+      } catch (err) {
+        alert("Terjadi kesalahan saat mengunggah.");
+        console.error(err);
+      }
+    });
+  </script>
+</body>
+</html>
