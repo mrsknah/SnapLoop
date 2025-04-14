@@ -1,5 +1,12 @@
 document.getElementById("upload-post").addEventListener("change", handleFileSelect);
 
+// Cek apakah token ada di localStorage
+const token = localStorage.getItem("token");
+if (!token) {
+  alert("Please login first.");
+  window.location.href = "login.html"; // Arahkan ke halaman login jika token tidak ada
+}
+
 async function handleFileSelect(event) {
   const file = event.target.files[0];
   if (file) {
@@ -107,4 +114,55 @@ async function loadProfile() {
 
 if (window.location.pathname.includes("profile.html")) {
   loadProfile();
+}
+
+// Show edit profile modal
+document.getElementById("edit-profile-btn").addEventListener("click", () => {
+    document.getElementById("edit-profile-modal").style.display = "flex";
+  });
+  
+  // Cancel edit
+  document.getElementById("cancel-edit-btn").addEventListener("click", () => {
+    document.getElementById("edit-profile-modal").style.display = "none";
+  });
+  
+  // Save edit profile
+  document.getElementById("save-profile-btn").addEventListener("click", async () => {
+    const fullName = document.getElementById("edit-fullname").value;
+    const bio = document.getElementById("edit-bio").value;
+    const file = document.getElementById("edit-photo").files[0];
+  
+    const formData = new FormData();
+    if (fullName) formData.append("fullName", fullName);
+    if (bio) formData.append("bio", bio);
+    if (file) formData.append("profilePhoto", file);
+  
+    try {
+      const res = await fetch("http://<YOUR_BACKEND_IP>/me", {
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+        body: formData,
+      });
+  
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.message);
+  
+      alert("Profile updated!");
+      location.reload();
+    } catch (err) {
+      console.error(err);
+      alert("Failed to update profile.");
+    }
+  });
+
+// Logout Button Functionality
+const logoutButton = document.getElementById('logout-btn');
+if (logoutButton) {
+  logoutButton.addEventListener('click', () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("username");
+    window.location.href = "login.html";  // Redirect to login page
+  });
 }

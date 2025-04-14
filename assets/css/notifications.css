@@ -32,3 +32,19 @@
     color: #888;
   }
   
+    /* Footer untuk halaman profile */
+.footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    background-color: #fff;
+    padding: 10px;
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+    border-top: 1px solid #ddd;
+  }
+  
+  .footer p {
+    margin: 0;
+  }

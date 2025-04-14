@@ -31,69 +31,43 @@
   <main class="profile-content">
     <section class="profile-header">
       <div class="profile-avatar">
-        <img src="assets/images/profile-avatar.jpeg" alt="User Avatar" class="avatar" />
+        <img src="" alt="User Avatar" class="avatar" id="avatar" />
       </div>
       <div class="profile-info">
-        <h2>ulid</h2>
-        <p1>@xo.ulid</p1>
-        <p>📸 Capturing light & quiet moments | ☕ + 🌿 lover</p>
-        <button id="edit-profile-btn" class="edit-btn">Edit Profile</button>
+        <h2 id="full-name"></h2>
+        <p id="username"></p>
+        <p id="bio">📸 User belum mengatur bio.</p>
       </div>
     </section>
 
     <section class="profile-stats">
       <div class="stat-item">
-        <span class="stat-number">0</span>
+        <span class="stat-number" id="posts-count">0</span>
         <span class="stat-label">Posts</span>
       </div>
       <div class="stat-item">
-        <span class="stat-number">500</span>
+        <span class="stat-number" id="followers-count">0</span>
         <span class="stat-label">Followers</span>
       </div>
       <div class="stat-item">
-        <span class="stat-number">500</span>
+        <span class="stat-number" id="following-count">0</span>
         <span class="stat-label">Following</span>
       </div>
     </section>
 
+    <!-- User's Posts -->
     <section class="profile-posts">
-      <h3>Your Posts</h3>
-
-      <div class="no-posts">
-        <p>You haven’t posted anything yet.</p>
-        <label for="upload-post" class="upload-icon" title="Upload your first post">
-          📤
-        </label>
-        <input type="file" id="upload-post" style="display: none;" />
-
-        <div id="caption-section" style="display: none;">
-          <textarea id="caption-input" placeholder="Write a caption..." rows="3"></textarea>
-          <button id="post-button">Post</button>
-        </div>
+      <h3>Posts</h3>
+      <div class="posts-grid" id="posts-grid">
+        <!-- User's posts will be dynamically loaded here -->
       </div>
-
-      <div class="posts-grid" style="display: none;"></div>
     </section>
   </main>
-
-  <!-- Modal Edit Profile -->
-  <div id="edit-profile-modal" class="modal" style="display: none;">
-    <div class="modal-content">
-      <h3>Edit Profile</h3>
-      <input type="text" id="edit-fullname" placeholder="Full Name" />
-      <textarea id="edit-bio" placeholder="Bio"></textarea>
-      <input type="file" id="edit-photo" accept="image/*" />
-      <div class="modal-actions">
-        <button id="save-profile-btn">Save</button>
-        <button id="cancel-edit-btn">Cancel</button>
-      </div>
-    </div>
-  </div>
 
   <footer class="footer">
     <p>&copy; 2025 SnapLoop. All rights reserved.</p>
   </footer>
 
-  <script src="profile.js"></script>
+  <script src="assets/js/user.js"></script>
 </body>
 </html>

@@ -16,6 +16,7 @@ if (loginForm) {
       const data = await response.json();
       if (response.ok) {
         localStorage.setItem("token", data.token);
+        localStorage.setItem("username", data.user.username); // Simpan username
         window.location.href = "profile.html";
       } else {
         alert(data.message || "Login failed.");
@@ -49,6 +50,7 @@ if (registerForm) {
       const data = await res.json();
       if (res.ok) {
         localStorage.setItem("token", data.token);
+        localStorage.setItem("username", data.user.username); // Simpan username
         window.location.href = "upload-photo.html"; // Next step: upload profile photo
       } else {
         alert(data.message || "Registration failed.");

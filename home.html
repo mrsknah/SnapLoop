@@ -15,7 +15,7 @@
     </div>
 
     <div class="nav-center">
-      <input type="text" class="search-input" placeholder="Search on SnapLoop...">
+      <input type="text" id="search-input" class="search-input" placeholder="Search on SnapLoop..." />
     </div>
 
     <div class="nav-right">
@@ -25,6 +25,9 @@
     </div>
   </header>
 
+  <!-- Hasil pencarian akan ditampilkan di bawah search bar -->
+  <div id="search-results" class="search-results"></div>
+
   <main class="main-feed">
     <!-- Example Post -->
     <div class="post-card">
@@ -32,22 +35,28 @@
         <img src="assets/images/profile-avatar2.jpg" alt="User" class="post-avatar" />
         <div>
           <strong>Marcelino</strong>
-          <span>@itsmarcel</span>
+          <a href="profile.html?username=itsmarcel" class="user-link">@itsmarcel</a>
         </div>
       </div>
       <img src="assets/images/sample-post.jpg" alt="Post image" class="post-image" />
       <div class="post-caption">
-        <p><strong>@itsmarcel</strong> Golden hour never fails 🌇✨</p>
+        <p><strong><a href="profile.html?username=itsmarcel" class="user-link">@itsmarcel</a></strong> Golden hour never fails 🌇✨</p>
       </div>
 
       <!-- Post Actions: Like, Comment, Share -->
       <div class="post-actions">
         <button class="post-action-btn like-btn">👍Like</button>
         <button class="post-action-btn comment-btn">💬Comment</button>
-        <button class="post-action-btn share-btn">🔗Share</button>
+        <button class="post-action-btn share-btn">🔗 Share</button>
       </div>
     </div>
   </main>
+
+  <footer class="footer">
+    <p>&copy; 2025 SnapLoop. All rights reserved.</p>
+  </footer>
+
+  <script src="assets/js/home.js"></script>
 
 </body>
 </html>
